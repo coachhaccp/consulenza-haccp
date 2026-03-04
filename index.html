@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cristina Petrea – Consulente di Sicurezza Alimentare</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --brand:     #7a1c2e;
+    --brand-lt:  #f9edef;
+    --brand-mid: #9e2a40;
+    --text:      #1a1a1a;
+    --muted:     #6b7280;
+    --border:    #e5e7eb;
+    --bg:        #fafafa;
+    --white:     #ffffff;
+    --radius:    12px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 1rem;
+  }
+
+  /* ── UTILITIES ── */
+  .container { max-width: 820px; margin: 0 auto; padding: 0 1.4rem; }
+  .section { padding: clamp(3rem, 7vw, 5rem) 0; }
+  .section-alt { background: var(--white); }
+  .section-brand { background: var(--brand); }
+
+  h2.section-title {
+    font-size: clamp(1.4rem, 3.5vw, 1.9rem);
+    font-weight: 800;
+    color: var(--brand);
+    margin-bottom: 1.2rem;
+    position: relative;
+    padding-bottom: 0.7rem;
+  }
+  h2.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 48px; height: 3px;
+    background: var(--brand);
+    border-radius: 99px;
+  }
+
+  p { color: #374151; margin-bottom: 0.9rem; font-size: 1.01rem; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--white);
+    border-bottom: 3px solid var(--brand);
+    padding: clamp(2.5rem, 7vw, 4.5rem) 1.4rem clamp(2rem, 5vw, 3.5rem);
+    text-align: center;
+  }
+
+  .photo-wrap {
+    width: 130px; height: 130px;
+    border-radius: 50%;
+    background: var(--brand-lt);
+    border: 4px solid var(--brand);
+    margin: 0 auto 1.6rem;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .photo-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .photo-placeholder {
+    font-size: 3rem;
+    color: var(--brand);
+    opacity: 0.4;
+    user-select: none;
+  }
+
+  header h1 {
+    font-size: clamp(1.7rem, 5vw, 2.6rem);
+    font-weight: 900;
+    color: var(--brand);
+    line-height: 1.2;
+    margin-bottom: 0.6rem;
+  }
+  header .subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.18rem);
+    color: var(--muted);
+    font-style: italic;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  /* ── CHI SONO ── */
+  .credentials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-top: 1.4rem;
+  }
+  .cred-pill {
+    display: flex; align-items: center; gap: 0.45rem;
+    background: var(--brand-lt);
+    border: 1px solid #e8b4be;
+    border-radius: 99px;
+    padding: 0.35rem 0.9rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--brand);
+  }
+
+  /* ── VISIONE ── */
+  .visione-box {
+    background: var(--brand);
+    border-radius: var(--radius);
+    padding: 2rem 2.2rem;
+    color: #fff;
+  }
+  .visione-box h2.section-title { color: #fff; }
+  .visione-box h2.section-title::after { background: rgba(255,255,255,0.5); }
+  .visione-box p { color: rgba(255,255,255,0.88); }
+
+  /* ── COME LAVORO ── */
+  .steps { display: flex; flex-direction: column; gap: 1rem; margin-top: 0.5rem; }
+  .step {
+    display: flex; align-items: flex-start; gap: 1rem;
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-left: 5px solid var(--brand);
+    border-radius: var(--radius);
+    padding: 1rem 1.2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .step-num {
+    flex-shrink: 0;
+    width: 32px; height: 32px;
+    background: var(--brand);
+    color: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.82rem; font-weight: 800;
+    margin-top: 1px;
+  }
+  .step-text strong { display: block; font-size: 0.93rem; color: var(--brand); margin-bottom: 0.2rem; }
+  .step-text span { font-size: 0.86rem; color: #4b5563; line-height: 1.55; }
+
+  /* ── PERCHÉ FUNZIONA ── */
+  .highlight-box {
+    background: var(--brand-lt);
+    border-left: 5px solid var(--brand);
+    border-radius: var(--radius);
+    padding: 1.4rem 1.6rem;
+    margin-top: 1rem;
+  }
+  .highlight-box p { color: #4b1220; }
+
+  /* ── COSA COSTRUIAMO ── */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .pillar {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-top: 4px solid var(--brand);
+    border-radius: var(--radius);
+    padding: 1.1rem 1rem;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .pillar .pillar-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+  .pillar strong { display: block; font-size: 0.88rem; color: var(--brand); font-weight: 700; }
+
+  /* ── A CHI È RIVOLTO ── */
+  .audience {
+    display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1rem;
+  }
+  .aud-item {
+    display: flex; align-items: center; gap: 0.5rem;
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.6rem 1rem;
+    font-size: 0.88rem; font-weight: 600;
+    color: var(--text);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .aud-item span { font-size: 1.2rem; }
+
+  /* ── CONTATTI ── */
+  .contact-card {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-top: 5px solid var(--brand);
+    border-radius: var(--radius);
+    padding: 2rem 2rem;
+    max-width: 480px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+  }
+  .contact-card h3 {
+    font-size: 1.2rem; font-weight: 800;
+    color: var(--brand); margin-bottom: 0.3rem;
+  }
+  .contact-card .role {
+    font-size: 0.84rem; color: var(--muted);
+    margin-bottom: 1.2rem;
+  }
+  .contact-row {
+    display: flex; align-items: center; gap: 0.75rem;
+    margin-bottom: 0.7rem;
+  }
+  .contact-row .c-icon {
+    width: 36px; height: 36px;
+    background: var(--brand-lt);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+  }
+  .contact-row .c-text { font-size: 0.92rem; color: var(--text); font-weight: 500; }
+  .contact-row a { color: var(--brand); text-decoration: none; font-weight: 700; }
+  .contact-row a:hover { text-decoration: underline; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--brand);
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    padding: 1.5rem 1rem;
+    font-size: 0.80rem;
+  }
+  footer strong { color: #fff; }
+
+  /* ── DIVIDER ── */
+  hr.divider {
+    border: none;
+    border-top: 2px solid var(--brand-lt);
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="photo-wrap">
+    <img src="foto.jpg" alt="Cristina Petrea">
+  </div>
+  <h1>Cristina Petrea</h1>
+  <p class="subtitle">Sistemi HACCP semplici, chiari e realmente utilizzabili.</p>
+</header>
+
+<!-- CHI SONO -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Chi sono</h2>
+    <p>Sono Cristina Petrea, consulente di sicurezza alimentare con <strong>oltre 25 anni di esperienza</strong> nel settore. Il mio lavoro è affiancare ristoranti, laboratori alimentari e piccole imprese nella costruzione di sistemi HACCP concreti, semplici e davvero applicabili.</p>
+    <p>Nata in Romania, vivo e lavoro in Italia da <strong>oltre 30 anni</strong>. Sono madrelingua romena e parlo correntemente l'italiano, il che mi permette di supportare anche imprenditori di origine romena che operano nel settore alimentare in Italia.</p>
+    <div class="credentials">
+      <div class="cred-pill">🎓 Laurea in Chimica</div>
+      <div class="cred-pill">🎓 Laurea in Ingegneria</div>
+      <div class="cred-pill">🎓 Laurea in Scienze e Tecnologie Alimentari</div>
+      <div class="cred-pill">📅 25+ anni di esperienza</div>
+      <div class="cred-pill">🇮🇹 In Italia da 30+ anni</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- LA MIA VISIONE -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="visione-box">
+      <h2 class="section-title">La mia visione</h2>
+      <p>La sicurezza alimentare non dovrebbe essere solo una pratica burocratica per evitare sanzioni. Quando è costruita nel modo giusto, diventa uno <strong>strumento reale per migliorare l'organizzazione</strong>, la qualità del lavoro e la reputazione di un'azienda alimentare.</p>
+      <p>Il mio obiettivo è trasformare il sistema HACCP da un obbligo da tollerare a una risorsa su cui contare ogni giorno.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- COME LAVORO -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Come lavoro</h2>
+    <p>Il mio metodo parte sempre dalla realtà concreta dell'azienda, non da modelli standard.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <strong>Semplificazione del sistema HACCP</strong>
+          <span>Traduco le procedure tecniche in strumenti chiari e usabili da chi lavora ogni giorno in cucina o in laboratorio.</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <strong>Formazione chiara del personale</strong>
+          <span>Il personale capisce perché fare le cose, non solo come. Questo fa la differenza nell'applicazione quotidiana.</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <strong>Strumenti pratici di controllo</strong>
+          <span>Check-list, schede di monitoraggio e registrazioni semplificate, progettate per essere effettivamente utilizzate.</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-text">
+          <strong>Supporto continuo</strong>
+          <span>Sono presente nel tempo, non solo al momento della consegna del documento. Il sistema cresce insieme all'azienda.</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-text">
+          <strong>Costruzione mese dopo mese</strong>
+          <span>Ogni mese si lavora su un aspetto concreto: controlli, formazione, organizzazione, gestione degli alimenti.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PERCHÉ FUNZIONA -->
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Perché questo metodo funziona</h2>
+    <p>Molte aziende hanno già un manuale HACCP. Il problema è che spesso nessuno lo usa davvero: è scritto per superare un controllo, non per guidare il lavoro quotidiano.</p>
+    <div class="highlight-box">
+      <p>Il mio approccio punta a creare <strong>procedure semplici che il personale può applicare davvero</strong>, ogni giorno, senza bisogno di rileggere pagine di documentazione tecnica. La sicurezza alimentare funziona solo se entra nelle abitudini di lavoro.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- COSA COSTRUIAMO OGNI MESE -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Cosa costruiamo ogni mese</h2>
+    <p>Il lavoro di consulenza non finisce con la consegna dei documenti. Ogni mese si migliora un tassello del sistema:</p>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-icon">📋</div>
+        <strong>Controlli</strong>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🗂️</div>
+        <strong>Organizzazione</strong>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">👨‍🍳</div>
+        <strong>Formazione del personale</strong>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🛡️</div>
+        <strong>Sicurezza alimentare</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- A CHI È RIVOLTO -->
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">A chi è rivolto</h2>
+    <p>Lavoro con realtà di piccole e medie dimensioni che hanno bisogno di un supporto concreto, non di documentazione generica:</p>
+    <div class="audience">
+      <div class="aud-item"><span>🍽️</span> Ristoranti</div>
+      <div class="aud-item"><span>🥗</span> Gastronomie</div>
+      <div class="aud-item"><span>🔬</span> Laboratori alimentari</div>
+      <div class="aud-item"><span>🏭</span> Produzione alimentare</div>
+      <div class="aud-item"><span>👨‍🍳</span> Personale del settore alimentare</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTATTI -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Contatti</h2>
+    <p style="margin-bottom:1.5rem">Hai domande o vuoi capire quale livello di supporto è più adatto alla tua attività? Scrivimi o chiamami direttamente.</p>
+    <div class="contact-card">
+      <h3>Cristina Petrea</h3>
+      <p class="role">Consulente di Sicurezza Alimentare</p>
+      <div class="contact-row">
+        <div class="c-icon">📞</div>
+        <div class="c-text"><a href="tel:+393402266268">340 226 6268</a></div>
+      </div>
+      <div class="contact-row">
+        <div class="c-icon">💬</div>
+        <div class="c-text"><a href="https://wa.me/393402266268" target="_blank">Scrivimi su WhatsApp</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>Cristina Petrea</strong> · Consulente di Sicurezza Alimentare<br>
+  © 2025 · Tutti i diritti riservati
+</footer>
+
+</body>
+</html>
